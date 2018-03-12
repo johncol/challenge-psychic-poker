@@ -45,7 +45,6 @@ public enum HandValue {
       String message = String.format("To calculate hand value the list must have %d cards", Hand.CARDS_IN_HAND);
       throw new IllegalArgumentException(message);
     }
-
     for (HandValue value : valuesInDescendingOrder) {
       if (value.checker.checkHandValueRulesFor(cards)) {
         return value;
@@ -56,6 +55,10 @@ public enum HandValue {
 
   public boolean isGreaterThan(HandValue other) {
     return compareTo(other) > 0;
+  }
+
+  public boolean isTheGreatestHandValueEver() {
+    return equals(HandValue.STRAIGHT_FLUSH);
   }
 
   @Override

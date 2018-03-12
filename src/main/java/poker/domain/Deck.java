@@ -33,8 +33,4 @@ public class Deck {
     }
     return Collections.unmodifiableList(cards.subList(0, nCards));
   }
-
-  public Card getCard(int index) {
-    return cards.get(index);
-  }
 }

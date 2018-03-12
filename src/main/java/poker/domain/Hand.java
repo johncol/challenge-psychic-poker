@@ -50,7 +50,7 @@ public class Hand {
     return cards.get(index);
   }
 
-  static class CardInHandReplacer {
+  public static class CardInHandReplacer {
 
     private final Hand hand;
     private final List<Card> cardsInHand;
