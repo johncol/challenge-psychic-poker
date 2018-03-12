@@ -9,7 +9,7 @@ class OnePairChecker extends FaceValueRepetitionsChecker {
   public static final int CARD_REPETITIONS_FOR_ONE_PAIR = 2;
 
   @Override
-  protected int minimumAmountOfFaceValueRepetitions() {
+  protected int amountOfFaceValueRepetitions() {
     return CARD_REPETITIONS_FOR_ONE_PAIR;
   }
 }

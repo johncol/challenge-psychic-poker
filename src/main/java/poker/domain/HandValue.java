@@ -41,8 +41,9 @@ public enum HandValue {
   private final HandValueChecker checker;
 
   public static HandValue of(List<Card> cards) {
-    if (cards == null || cards.size() != 5) {
-      throw new IllegalArgumentException("To calculate hand value a 5-cards list needs to be provided");
+    if (cards == null || cards.size() != Hand.CARDS_IN_HAND) {
+      String message = String.format("To calculate hand value the list must have %d cards", Hand.CARDS_IN_HAND);
+      throw new IllegalArgumentException(message);
     }
 
     for (HandValue value : valuesInDescendingOrder) {
