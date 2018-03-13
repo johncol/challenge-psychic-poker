@@ -1,38 +1,30 @@
 package poker.checker;
 
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Map;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import poker.domain.card.Card;
+import poker.domain.card.FaceValue;
 
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
 class FullHouseChecker extends HandValueChecker {
 
-  private final HandValueChecker onePairChecker = CheckerFactory.forOnePair();
+  private final FaceValueRepetitionsChecker onePairChecker = CheckerFactory.forOnePair();
 
-  private final HandValueChecker threeOfAKindChecker = CheckerFactory.forThreeOfAKind();
+  private final FaceValueRepetitionsChecker threeOfAKindChecker = CheckerFactory.forThreeOfAKind();
 
   @Override
   public boolean cardsSatisfyHandValueRules(List<Card> cards) {
-    List<Card> threeOfAKindCards = threeOfAKindChecker.subsetThatSatisfyRulesFor(cards);
-
-    if (isEffectivelyThreeOfAKind(threeOfAKindCards)) {
-      List<Card> possiblePairOfCardsList = remainingCardsWithoutTheThreeOfAKind(cards, threeOfAKindCards);
-      return onePairChecker.checkHandValueRulesFor(possiblePairOfCardsList);
+    Map<FaceValue, List<Card>> trios = threeOfAKindChecker.groupCardsByFaceValue(cards);
+    if (trios.entrySet().isEmpty()) {
+      return false;
+    }
+    if (trios.entrySet().size() >= 2) {
+      return true;
     }
 
-    return false;
+    Map<FaceValue, List<Card>> pairs = onePairChecker.groupCardsByFaceValue(cards);
+    return pairs.entrySet().size() >= 2;
   }
-
-  private List<Card> remainingCardsWithoutTheThreeOfAKind(List<Card> cards, List<Card> threeOfAKindCards) {
-    return cards.stream()
-        .filter(card -> !threeOfAKindCards.contains(card))
-        .collect(Collectors.toList());
-  }
-
-  private boolean isEffectivelyThreeOfAKind(List<Card> threeOfAKindCards) {
-    return threeOfAKindCards.size() == ThreeOfAKindChecker.CARD_REPETITIONS_FOR_THREE_OF_A_KIND;
-  }
-
 }

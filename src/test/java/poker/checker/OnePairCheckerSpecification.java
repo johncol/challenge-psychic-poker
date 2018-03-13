@@ -13,7 +13,7 @@ import poker.domain.card.Suit;
 
 public class OnePairCheckerSpecification {
 
-  private final HandValueChecker checker = new OnePairChecker();
+  private final FaceValueRepetitionsChecker checker = new OnePairChecker();
 
   @Test
   public void shouldReturnCheckResultIsTrueWhenAnyTwoCardsHaveTheSameFaceValue() {

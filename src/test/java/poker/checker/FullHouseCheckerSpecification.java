@@ -2,7 +2,6 @@ package poker.checker;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
 
 import java.util.List;
 import org.junit.Test;

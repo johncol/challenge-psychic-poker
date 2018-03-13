@@ -6,7 +6,7 @@ public class CheckerFactory {
     return new HighestCardChecker();
   }
 
-  public static HandValueChecker forOnePair() {
+  public static FaceValueRepetitionsChecker forOnePair() {
     return new OnePairChecker();
   }
 
@@ -14,7 +14,7 @@ public class CheckerFactory {
     return new TwoPairsChecker();
   }
 
-  public static HandValueChecker forThreeOfAKind() {
+  public static FaceValueRepetitionsChecker forThreeOfAKind() {
     return new ThreeOfAKindChecker();
   }
 
@@ -30,7 +30,7 @@ public class CheckerFactory {
     return new FullHouseChecker();
   }
 
-  public static HandValueChecker forFourOfAKind() {
+  public static FaceValueRepetitionsChecker forFourOfAKind() {
     return new FourOfAKindChecker();
   }
 

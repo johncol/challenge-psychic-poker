@@ -13,7 +13,7 @@ import poker.domain.card.Suit;
 
 public class ThreeOfAKindCheckerSpecification {
 
-  private final HandValueChecker checker = new ThreeOfAKindChecker();
+  private final FaceValueRepetitionsChecker checker = new ThreeOfAKindChecker();
 
   @Test
   public void shouldReturnCheckResultIsTrueWhenThreeCardsHaveTheSameFaceValue() {

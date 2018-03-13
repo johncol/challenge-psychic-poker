@@ -73,4 +73,40 @@ public class StraightFlushCheckerSpecification {
     assertThat(isStraightFlush, is(false));
   }
 
+  @Test
+  public void shouldReturnCheckResultIsFalseWhenFiveCardsConformFlushAndFiveConformStraightButAreNotExactlyTheSameSetOfCards() {
+    List<Card> cardsList = List.of(
+        Card.of(FaceValue.ACE, Suit.SPADES),
+        Card.of(FaceValue.TWO, Suit.DIAMONDS),
+        Card.of(FaceValue.THREE, Suit.DIAMONDS),
+        Card.of(FaceValue.FOUR, Suit.DIAMONDS),
+        Card.of(FaceValue.FIVE, Suit.DIAMONDS),
+        Card.of(FaceValue.SEVEN, Suit.DIAMONDS)
+    );
+
+    boolean isStraightFlush = checker.checkHandValueRulesFor(cardsList);
+
+    assertThat(isStraightFlush, is(false));
+  }
+
+  @Test
+  public void shouldReturnCheckResultIsFalseWhenFiveCardsConformFlushAndOtherFiveConformStraightButAreTotallyDifferentSetOfCards() {
+    List<Card> cardsList = List.of(
+        Card.of(FaceValue.ACE, Suit.SPADES),
+        Card.of(FaceValue.TWO, Suit.SPADES),
+        Card.of(FaceValue.THREE, Suit.DIAMONDS),
+        Card.of(FaceValue.FOUR, Suit.DIAMONDS),
+        Card.of(FaceValue.FIVE, Suit.CLUBS),
+        Card.of(FaceValue.SEVEN, Suit.HEARTS),
+        Card.of(FaceValue.NINE, Suit.HEARTS),
+        Card.of(FaceValue.JACK, Suit.HEARTS),
+        Card.of(FaceValue.QUEEN, Suit.HEARTS),
+        Card.of(FaceValue.KING, Suit.HEARTS)
+    );
+
+    boolean isStraightFlush = checker.checkHandValueRulesFor(cardsList);
+
+    assertThat(isStraightFlush, is(false));
+  }
+
 }
