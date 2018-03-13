@@ -1,4 +1,4 @@
-package poker;
+package poker.psychic;
 
 import java.util.Comparator;
 import java.util.List;
@@ -10,15 +10,15 @@ import poker.domain.Hand;
 import poker.domain.HandValue;
 import poker.domain.PokerGame;
 import poker.domain.card.Card;
-import poker.io.PokerParser;
+import poker.io.Parser;
 
 @AllArgsConstructor
 public class PokerPsychic {
 
-  private final PokerParser pokerParser;
+  private final Parser<String> parser;
 
   public String usePsychicSight(String cardsInHandAndInDeck) {
-    PokerGame game = pokerParser.parse(cardsInHandAndInDeck);
+    PokerGame game = parser.parse(cardsInHandAndInDeck);
     HandValue bestHandValue = useSight(game);
     return bestHandValue.toString();
   }

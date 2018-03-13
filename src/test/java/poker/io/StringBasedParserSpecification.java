@@ -13,9 +13,9 @@ import poker.domain.card.Card;
 import poker.domain.card.FaceValue;
 import poker.domain.card.Suit;
 
-public class PokerParserSpecification {
+public class StringBasedParserSpecification {
 
-  private final PokerParser parser = new PokerParser();
+  private final StringBasedParser parser = new StringBasedParser();
 
   @Test
   public void shouldPutTheRightCardsInHandWhenBuildingThePokerGame() {

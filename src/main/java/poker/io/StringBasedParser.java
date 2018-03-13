@@ -10,10 +10,11 @@ import poker.domain.PokerGame;
 import poker.domain.card.Card;
 import poker.domain.card.CardFactory;
 
-public class PokerParser {
+public class StringBasedParser implements Parser<String> {
 
   public static final int CARD_REPRESENTATION_EXPECTED_LENGTH = 2;
 
+  @Override
   public PokerGame parse(String cardsInHandAndInDeck) {
     String[] inputCards = cardsInHandAndInDeck.trim().split(StringUtils.SPACE);
 

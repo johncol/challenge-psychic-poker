@@ -1,14 +1,16 @@
-package poker;
+package poker.psychic;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
-import poker.io.PokerParser;
+import poker.io.Parser;
+import poker.io.StringBasedParser;
+import poker.psychic.PokerPsychic;
 
 public class PokerPsychicSpecification {
 
-  private final PokerParser parser = new PokerParser();
+  private final Parser<String> parser = new StringBasedParser();
 
   private final PokerPsychic psychic = new PokerPsychic(parser);
 
