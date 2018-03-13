@@ -5,6 +5,7 @@ import static org.junit.Assert.assertThat;
 
 import java.util.List;
 import org.junit.Test;
+import poker.checker.api.HandValueChecker;
 import poker.domain.card.Card;
 import poker.domain.card.FaceValue;
 import poker.domain.card.Suit;
@@ -23,7 +24,7 @@ public class TwoPairsCheckerSpecification {
         Card.of(FaceValue.ACE, Suit.DIAMONDS)
     );
 
-    boolean isTwoPairs = checker.checkHandValueRulesFor(cardsListWithTwoPairs);
+    boolean isTwoPairs = checker.checkRulesFor(cardsListWithTwoPairs);
 
     assertThat(isTwoPairs, is(true));
   }
@@ -38,7 +39,7 @@ public class TwoPairsCheckerSpecification {
         Card.of(FaceValue.EIGHT, Suit.DIAMONDS)
     );
 
-    boolean isTwoPairs = checker.checkHandValueRulesFor(cardsListWithOnlyOnePair);
+    boolean isTwoPairs = checker.checkRulesFor(cardsListWithOnlyOnePair);
 
     assertThat(isTwoPairs, is(false));
   }
@@ -53,7 +54,7 @@ public class TwoPairsCheckerSpecification {
         Card.of(FaceValue.EIGHT, Suit.DIAMONDS)
     );
 
-    boolean isTwoPairs = checker.checkHandValueRulesFor(cardsListWithoutAnyPair);
+    boolean isTwoPairs = checker.checkRulesFor(cardsListWithoutAnyPair);
 
     assertThat(isTwoPairs, is(false));
   }

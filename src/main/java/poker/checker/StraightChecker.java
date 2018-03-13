@@ -5,16 +5,17 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import poker.checker.api.HandValueChecker;
 import poker.domain.card.Card;
 import poker.domain.card.FaceValue;
 
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
-class StraightChecker extends HandValueChecker {
+class StraightChecker implements HandValueChecker {
 
   public static final int MIN_CARDS_REQUIRED_FOR_STRAIGHT = 5;
 
   @Override
-  public boolean cardsSatisfyHandValueRules(List<Card> cards) {
+  public boolean checkRulesFor(List<Card> cards) {
     List<Integer> values = buildListOfCardsOrdinalValues(cards);
 
     int sequentialCards = 1;

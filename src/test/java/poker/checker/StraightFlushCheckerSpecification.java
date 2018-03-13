@@ -5,6 +5,7 @@ import static org.junit.Assert.assertThat;
 
 import java.util.List;
 import org.junit.Test;
+import poker.checker.api.HandValueChecker;
 import poker.domain.card.Card;
 import poker.domain.card.FaceValue;
 import poker.domain.card.Suit;
@@ -23,7 +24,7 @@ public class StraightFlushCheckerSpecification {
         Card.of(FaceValue.TWO, Suit.HEARTS)
     );
 
-    boolean isStraightFlush = checker.checkHandValueRulesFor(sequentialSameSuitCardsList);
+    boolean isStraightFlush = checker.checkRulesFor(sequentialSameSuitCardsList);
 
     assertThat(isStraightFlush, is(true));
   }
@@ -38,7 +39,7 @@ public class StraightFlushCheckerSpecification {
         Card.of(FaceValue.TWO, Suit.DIAMONDS)
     );
 
-    boolean isStraightFlush = checker.checkHandValueRulesFor(sequentialButDifferentSuitCardsList);
+    boolean isStraightFlush = checker.checkRulesFor(sequentialButDifferentSuitCardsList);
 
     assertThat(isStraightFlush, is(false));
   }
@@ -53,7 +54,7 @@ public class StraightFlushCheckerSpecification {
         Card.of(FaceValue.TWO, Suit.HEARTS)
     );
 
-    boolean isStraightFlush = checker.checkHandValueRulesFor(nonSequentialSameSuitCardsList);
+    boolean isStraightFlush = checker.checkRulesFor(nonSequentialSameSuitCardsList);
 
     assertThat(isStraightFlush, is(false));
   }
@@ -68,7 +69,7 @@ public class StraightFlushCheckerSpecification {
         Card.of(FaceValue.TWO, Suit.DIAMONDS)
     );
 
-    boolean isStraightFlush = checker.checkHandValueRulesFor(nonSequentialDifferentSuitCardsList);
+    boolean isStraightFlush = checker.checkRulesFor(nonSequentialDifferentSuitCardsList);
 
     assertThat(isStraightFlush, is(false));
   }
@@ -84,7 +85,7 @@ public class StraightFlushCheckerSpecification {
         Card.of(FaceValue.SEVEN, Suit.DIAMONDS)
     );
 
-    boolean isStraightFlush = checker.checkHandValueRulesFor(cardsList);
+    boolean isStraightFlush = checker.checkRulesFor(cardsList);
 
     assertThat(isStraightFlush, is(false));
   }
@@ -104,7 +105,7 @@ public class StraightFlushCheckerSpecification {
         Card.of(FaceValue.KING, Suit.HEARTS)
     );
 
-    boolean isStraightFlush = checker.checkHandValueRulesFor(cardsList);
+    boolean isStraightFlush = checker.checkRulesFor(cardsList);
 
     assertThat(isStraightFlush, is(false));
   }

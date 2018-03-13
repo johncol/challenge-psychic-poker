@@ -8,7 +8,7 @@ import poker.domain.Deck;
 import poker.domain.Hand;
 import poker.domain.PokerGame;
 import poker.domain.card.Card;
-import poker.factory.CardFactory;
+import poker.domain.card.CardFactory;
 
 public class PokerParser {
 
@@ -51,7 +51,8 @@ public class PokerParser {
 
   private void assertCardRepresentationLength(String cardRepresentation) {
     if (cardRepresentation.length() != CARD_REPRESENTATION_EXPECTED_LENGTH) {
-      throw new IllegalArgumentException("Card representation must be of 2 characters length");
+      String message = String.format("Card representation must be of %d characters length", CARD_REPRESENTATION_EXPECTED_LENGTH);
+      throw new IllegalArgumentException(message);
     }
   }
 

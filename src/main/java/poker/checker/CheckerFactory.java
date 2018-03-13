@@ -1,12 +1,14 @@
 package poker.checker;
 
+import poker.checker.api.HandValueChecker;
+
 public class CheckerFactory {
 
   public static HandValueChecker forHighestCard() {
     return new HighestCardChecker();
   }
 
-  public static FaceValueRepetitionsChecker forOnePair() {
+  public static HandValueChecker forOnePair() {
     return new OnePairChecker();
   }
 
@@ -14,7 +16,7 @@ public class CheckerFactory {
     return new TwoPairsChecker();
   }
 
-  public static FaceValueRepetitionsChecker forThreeOfAKind() {
+  public static HandValueChecker forThreeOfAKind() {
     return new ThreeOfAKindChecker();
   }
 
@@ -30,7 +32,7 @@ public class CheckerFactory {
     return new FullHouseChecker();
   }
 
-  public static FaceValueRepetitionsChecker forFourOfAKind() {
+  public static HandValueChecker forFourOfAKind() {
     return new FourOfAKindChecker();
   }
 

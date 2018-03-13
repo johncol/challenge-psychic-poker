@@ -5,6 +5,7 @@ import static org.junit.Assert.assertThat;
 
 import java.util.List;
 import org.junit.Test;
+import poker.checker.api.HandValueChecker;
 import poker.domain.card.Card;
 import poker.domain.card.FaceValue;
 import poker.domain.card.Suit;
@@ -23,7 +24,7 @@ public class FullHouseCheckerSpecification {
         Card.of(FaceValue.TWO, Suit.DIAMONDS)
     );
 
-    boolean isFullHouse = checker.checkHandValueRulesFor(fullHouseCardsList);
+    boolean isFullHouse = checker.checkRulesFor(fullHouseCardsList);
 
     assertThat(isFullHouse, is(true));
   }
@@ -38,7 +39,7 @@ public class FullHouseCheckerSpecification {
         Card.of(FaceValue.FOUR, Suit.DIAMONDS)
     );
 
-    boolean isFullHouse = checker.checkHandValueRulesFor(onePairCardsList);
+    boolean isFullHouse = checker.checkRulesFor(onePairCardsList);
 
     assertThat(isFullHouse, is(false));
   }
@@ -53,7 +54,7 @@ public class FullHouseCheckerSpecification {
         Card.of(FaceValue.TWO, Suit.DIAMONDS)
     );
 
-    boolean isFullHouse = checker.checkHandValueRulesFor(threeOfAKindCardsList);
+    boolean isFullHouse = checker.checkRulesFor(threeOfAKindCardsList);
 
     assertThat(isFullHouse, is(false));
   }
@@ -68,7 +69,7 @@ public class FullHouseCheckerSpecification {
         Card.of(FaceValue.TWO, Suit.DIAMONDS)
     );
 
-    boolean isFullHouse = checker.checkHandValueRulesFor(nonFullHouseCardsList);
+    boolean isFullHouse = checker.checkRulesFor(nonFullHouseCardsList);
 
     assertThat(isFullHouse, is(false));
   }

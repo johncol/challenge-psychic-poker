@@ -5,6 +5,7 @@ import static org.junit.Assert.assertThat;
 
 import java.util.List;
 import org.junit.Test;
+import poker.checker.api.HandValueChecker;
 import poker.domain.card.Card;
 import poker.domain.card.FaceValue;
 import poker.domain.card.Suit;
@@ -23,7 +24,7 @@ public class StraightCheckerSpecification {
         Card.of(FaceValue.SIX, Suit.HEARTS)
     );
 
-    boolean isStraight = checker.checkHandValueRulesFor(listWithSequentialCards);
+    boolean isStraight = checker.checkRulesFor(listWithSequentialCards);
 
     assertThat(isStraight, is(true));
   }
@@ -38,7 +39,7 @@ public class StraightCheckerSpecification {
         Card.of(FaceValue.ACE, Suit.HEARTS)
     );
 
-    boolean isStraight = checker.checkHandValueRulesFor(listWithSequentialCardsStartingWithAce);
+    boolean isStraight = checker.checkRulesFor(listWithSequentialCardsStartingWithAce);
 
     assertThat(isStraight, is(true));
   }
@@ -53,7 +54,7 @@ public class StraightCheckerSpecification {
         Card.of(FaceValue.KING, Suit.HEARTS)
     );
 
-    boolean isStraight = checker.checkHandValueRulesFor(listWithSequentialCardsEndingWithAce);
+    boolean isStraight = checker.checkRulesFor(listWithSequentialCardsEndingWithAce);
 
     assertThat(isStraight, is(true));
   }
@@ -68,7 +69,7 @@ public class StraightCheckerSpecification {
         Card.of(FaceValue.KING, Suit.HEARTS)
     );
 
-    boolean isStraight = checker.checkHandValueRulesFor(listWithNonSequentialCards);
+    boolean isStraight = checker.checkRulesFor(listWithNonSequentialCards);
 
     assertThat(isStraight, is(false));
   }
@@ -83,7 +84,7 @@ public class StraightCheckerSpecification {
         Card.of(FaceValue.TWO, Suit.HEARTS)
     );
 
-    boolean isStraight = checker.checkHandValueRulesFor(listWithSequentialCardsWithAceInBetween);
+    boolean isStraight = checker.checkRulesFor(listWithSequentialCardsWithAceInBetween);
 
     assertThat(isStraight, is(false));
   }

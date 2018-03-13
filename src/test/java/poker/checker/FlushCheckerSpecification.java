@@ -5,6 +5,7 @@ import static org.junit.Assert.assertThat;
 
 import java.util.List;
 import org.junit.Test;
+import poker.checker.api.HandValueChecker;
 import poker.domain.card.Card;
 import poker.domain.card.FaceValue;
 import poker.domain.card.Suit;
@@ -23,7 +24,7 @@ public class FlushCheckerSpecification {
         Card.of(FaceValue.EIGHT, Suit.HEARTS)
     );
 
-    boolean isFlush = checker.checkHandValueRulesFor(sameSuitCardsList);
+    boolean isFlush = checker.checkRulesFor(sameSuitCardsList);
 
     assertThat(isFlush, is(true));
   }
@@ -38,7 +39,7 @@ public class FlushCheckerSpecification {
         Card.of(FaceValue.EIGHT, Suit.DIAMONDS)
     );
 
-    boolean isFlush = checker.checkHandValueRulesFor(severalSuitsCardsList);
+    boolean isFlush = checker.checkRulesFor(severalSuitsCardsList);
 
     assertThat(isFlush, is(false));
   }

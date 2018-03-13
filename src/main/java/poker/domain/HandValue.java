@@ -6,7 +6,7 @@ import java.util.List;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import poker.checker.CheckerFactory;
-import poker.checker.HandValueChecker;
+import poker.checker.api.HandValueChecker;
 import poker.domain.card.Card;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
@@ -47,7 +47,7 @@ public enum HandValue {
     }
 
     for (HandValue value : valuesInDescendingOrder) {
-      if (value.checker.checkHandValueRulesFor(cards)) {
+      if (value.checker.checkRulesFor(cards)) {
         return value;
       }
     }

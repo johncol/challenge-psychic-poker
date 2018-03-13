@@ -2,6 +2,9 @@ package poker.domain.card;
 
 import java.util.Arrays;
 
+/**
+ * Base enumeration for enums which are represented by a char value
+ */
 public interface CharacterValuedEnum {
 
   char getValue();

@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.List;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-import lombok.Value;
 import poker.domain.card.Card;
 
 @ToString
@@ -28,13 +27,9 @@ public class Deck {
   }
 
   public List<Card> glanceFirst(int nCards) {
-    if (nCards < 1 || nCards > CARDS_IN_DECK) {
-      throw new IllegalArgumentException("Cards to glance must be a number between 1 and " + CARDS_IN_DECK);
+    if (nCards < 0 || nCards > CARDS_IN_DECK) {
+      throw new IllegalArgumentException("Cards to glance must be a number between 0 and " + CARDS_IN_DECK);
     }
     return Collections.unmodifiableList(cards.subList(0, nCards));
-  }
-
-  public Card getCard(int index) {
-    return cards.get(index);
   }
 }

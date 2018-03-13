@@ -15,10 +15,6 @@ public class PokerGame {
   private final Hand hand;
   private final Deck deck;
 
-  public String handValue() {
-    return hand.getValue().toString();
-  }
-
   public static PokerGame with(Hand hand, Deck deck) {
     return new PokerGame(hand, deck);
   }

@@ -1,8 +1,4 @@
-package poker.factory;
-
-import poker.domain.card.Card;
-import poker.domain.card.FaceValue;
-import poker.domain.card.Suit;
+package poker.domain.card;
 
 public class CardFactory {
 

@@ -4,6 +4,7 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
+import java.util.List;
 import org.junit.Test;
 import poker.domain.Deck;
 import poker.domain.Hand;
@@ -21,12 +22,13 @@ public class PokerParserSpecification {
     PokerGame pokerGame = parser.parse("TH JH QC QD QS QH KH AH 2S 6S");
 
     Hand hand = pokerGame.getHand();
+    List<Card> cards = hand.getCards();
 
-    assertThat(hand.getCard(0), is(equalTo(Card.of(FaceValue.TEN, Suit.HEARTS))));
-    assertThat(hand.getCard(1), is(equalTo(Card.of(FaceValue.JACK, Suit.HEARTS))));
-    assertThat(hand.getCard(2), is(equalTo(Card.of(FaceValue.QUEEN, Suit.CLUBS))));
-    assertThat(hand.getCard(3), is(equalTo(Card.of(FaceValue.QUEEN, Suit.DIAMONDS))));
-    assertThat(hand.getCard(4), is(equalTo(Card.of(FaceValue.QUEEN, Suit.SPADES))));
+    assertThat(cards.get(0), is(equalTo(Card.of(FaceValue.TEN, Suit.HEARTS))));
+    assertThat(cards.get(1), is(equalTo(Card.of(FaceValue.JACK, Suit.HEARTS))));
+    assertThat(cards.get(2), is(equalTo(Card.of(FaceValue.QUEEN, Suit.CLUBS))));
+    assertThat(cards.get(3), is(equalTo(Card.of(FaceValue.QUEEN, Suit.DIAMONDS))));
+    assertThat(cards.get(4), is(equalTo(Card.of(FaceValue.QUEEN, Suit.SPADES))));
   }
 
   @Test
@@ -34,12 +36,13 @@ public class PokerParserSpecification {
     PokerGame pokerGame = parser.parse("TH JH QC QD QS QH KH AH 2S 6S");
 
     Deck deck = pokerGame.getDeck();
+    List<Card> cards = deck.glanceFirst(5);
 
-    assertThat(deck.getCard(0), is(equalTo(Card.of(FaceValue.QUEEN, Suit.HEARTS))));
-    assertThat(deck.getCard(1), is(equalTo(Card.of(FaceValue.KING, Suit.HEARTS))));
-    assertThat(deck.getCard(2), is(equalTo(Card.of(FaceValue.ACE, Suit.HEARTS))));
-    assertThat(deck.getCard(3), is(equalTo(Card.of(FaceValue.TWO, Suit.SPADES))));
-    assertThat(deck.getCard(4), is(equalTo(Card.of(FaceValue.SIX, Suit.SPADES))));
+    assertThat(cards.get(0), is(equalTo(Card.of(FaceValue.QUEEN, Suit.HEARTS))));
+    assertThat(cards.get(1), is(equalTo(Card.of(FaceValue.KING, Suit.HEARTS))));
+    assertThat(cards.get(2), is(equalTo(Card.of(FaceValue.ACE, Suit.HEARTS))));
+    assertThat(cards.get(3), is(equalTo(Card.of(FaceValue.TWO, Suit.SPADES))));
+    assertThat(cards.get(4), is(equalTo(Card.of(FaceValue.SIX, Suit.SPADES))));
   }
 
   @Test(expected = IllegalArgumentException.class)

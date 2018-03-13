@@ -5,6 +5,7 @@ import static org.junit.Assert.assertThat;
 
 import java.util.List;
 import org.junit.Test;
+import poker.checker.api.HandValueChecker;
 import poker.domain.card.Card;
 import poker.domain.card.FaceValue;
 import poker.domain.card.Suit;
@@ -23,7 +24,7 @@ public class FourOfAKindCheckerSpecification {
         Card.of(FaceValue.ACE, Suit.DIAMONDS)
     );
 
-    boolean isFourOfAKind = checker.checkHandValueRulesFor(cardsListWithFourCardsOfTheSameFaceValue);
+    boolean isFourOfAKind = checker.checkRulesFor(cardsListWithFourCardsOfTheSameFaceValue);
 
     assertThat(isFourOfAKind, is(true));
   }
@@ -38,7 +39,7 @@ public class FourOfAKindCheckerSpecification {
         Card.of(FaceValue.ACE, Suit.DIAMONDS)
     );
 
-    boolean isFourOfAKind = checker.checkHandValueRulesFor(cardsListWithoutThreeCardsOfTheSameFaceValue);
+    boolean isFourOfAKind = checker.checkRulesFor(cardsListWithoutThreeCardsOfTheSameFaceValue);
 
     assertThat(isFourOfAKind, is(false));
   }

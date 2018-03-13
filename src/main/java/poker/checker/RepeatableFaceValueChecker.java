@@ -4,16 +4,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
+import poker.checker.api.FaceValueGrouper;
+import poker.checker.api.HandValueChecker;
 import poker.domain.card.Card;
 import poker.domain.card.FaceValue;
 
-// TODO create interface to describe new methods
-abstract class FaceValueRepetitionsChecker extends HandValueChecker {
+abstract class RepeatableFaceValueChecker implements HandValueChecker, FaceValueGrouper {
 
   protected abstract int amountOfFaceValueRepetitions();
 
   @Override
-  protected final boolean cardsSatisfyHandValueRules(List<Card> cards) {
+  public final boolean checkRulesFor(List<Card> cards) {
     return cards.stream()
         .collect(Collectors.groupingBy(Card::getFaceValue, Collectors.counting()))
         .values()
@@ -21,25 +22,9 @@ abstract class FaceValueRepetitionsChecker extends HandValueChecker {
         .anyMatch(faceRepetitions -> faceRepetitions >= amountOfFaceValueRepetitions());
   }
 
-  // TODO check if required in production code
-  public List<Card> subsetThatSatisfyRulesFor(List<Card> cards) {
+  @Override
+  public Map<FaceValue, List<Card>> groupByFaceValue(List<Card> cards) {
     return cards.stream()
-        .collect(Collectors.groupingBy(Card::getFaceValue, Collectors.counting()))
-        .entrySet()
-        .stream()
-        .filter(entry -> entry.getValue() >= amountOfFaceValueRepetitions())
-        .findAny()
-        .map(Entry::getKey)
-        .map(faceValue -> cards.stream()
-            .filter(card -> card.getFaceValue().equals(faceValue))
-            .limit(amountOfFaceValueRepetitions())
-            .collect(Collectors.toList()))
-        .orElse(List.of());
-  }
-
-  // TODO unit testing
-  public Map<FaceValue, List<Card>> groupCardsByFaceValue(List<Card> cards) {
-    Map<FaceValue, List<Card>> faceValueListMap = cards.stream()
         .collect(Collectors.groupingBy(Card::getFaceValue, Collectors.counting()))
         .entrySet()
         .stream()
@@ -50,7 +35,6 @@ abstract class FaceValueRepetitionsChecker extends HandValueChecker {
             .limit(amountOfFaceValueRepetitions())
             .collect(Collectors.toList()))
         .collect(Collectors.toMap(list -> list.get(0).getFaceValue(), list -> list));
-    return faceValueListMap;
   }
 
 }

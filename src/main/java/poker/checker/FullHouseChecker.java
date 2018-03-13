@@ -4,19 +4,21 @@ import java.util.List;
 import java.util.Map;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import poker.checker.api.FaceValueGrouper;
+import poker.checker.api.HandValueChecker;
 import poker.domain.card.Card;
 import poker.domain.card.FaceValue;
 
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
-class FullHouseChecker extends HandValueChecker {
+class FullHouseChecker implements HandValueChecker {
 
-  private final FaceValueRepetitionsChecker onePairChecker = CheckerFactory.forOnePair();
+  private final FaceValueGrouper pairsGrouper = GrouperFactory.forPairs();
 
-  private final FaceValueRepetitionsChecker threeOfAKindChecker = CheckerFactory.forThreeOfAKind();
+  private final FaceValueGrouper threeOfAKindGrouper = GrouperFactory.forThreeOfAKind();
 
   @Override
-  public boolean cardsSatisfyHandValueRules(List<Card> cards) {
-    Map<FaceValue, List<Card>> trios = threeOfAKindChecker.groupCardsByFaceValue(cards);
+  public boolean checkRulesFor(List<Card> cards) {
+    Map<FaceValue, List<Card>> trios = threeOfAKindGrouper.groupByFaceValue(cards);
     if (trios.entrySet().isEmpty()) {
       return false;
     }
@@ -24,7 +26,7 @@ class FullHouseChecker extends HandValueChecker {
       return true;
     }
 
-    Map<FaceValue, List<Card>> pairs = onePairChecker.groupCardsByFaceValue(cards);
+    Map<FaceValue, List<Card>> pairs = pairsGrouper.groupByFaceValue(cards);
     return pairs.entrySet().size() >= 2;
   }
 }

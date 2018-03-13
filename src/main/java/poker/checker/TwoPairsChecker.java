@@ -3,15 +3,17 @@ package poker.checker;
 import java.util.List;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import poker.checker.api.FaceValueGrouper;
+import poker.checker.api.HandValueChecker;
 import poker.domain.card.Card;
 
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
-class TwoPairsChecker extends HandValueChecker {
+class TwoPairsChecker implements HandValueChecker {
 
-  private final FaceValueRepetitionsChecker onePairChecker = CheckerFactory.forOnePair();
+  private final FaceValueGrouper pairsGrouper = GrouperFactory.forPairs();
 
   @Override
-  public boolean cardsSatisfyHandValueRules(List<Card> cards) {
-    return onePairChecker.groupCardsByFaceValue(cards).keySet().size() >= 2;
+  public boolean checkRulesFor(List<Card> cards) {
+    return pairsGrouper.groupByFaceValue(cards).keySet().size() >= 2;
   }
 }

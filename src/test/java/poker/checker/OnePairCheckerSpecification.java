@@ -1,7 +1,5 @@
 package poker.checker;
 
-import static org.hamcrest.Matchers.containsInAnyOrder;
-import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -13,7 +11,7 @@ import poker.domain.card.Suit;
 
 public class OnePairCheckerSpecification {
 
-  private final FaceValueRepetitionsChecker checker = new OnePairChecker();
+  private final RepeatableFaceValueChecker checker = new OnePairChecker();
 
   @Test
   public void shouldReturnCheckResultIsTrueWhenAnyTwoCardsHaveTheSameFaceValue() {
@@ -25,7 +23,7 @@ public class OnePairCheckerSpecification {
         Card.of(FaceValue.EIGHT, Suit.DIAMONDS)
     );
 
-    boolean isOnePair = checker.checkHandValueRulesFor(cardsListWithOnePair);
+    boolean isOnePair = checker.checkRulesFor(cardsListWithOnePair);
 
     assertThat(isOnePair, is(true));
   }
@@ -40,40 +38,9 @@ public class OnePairCheckerSpecification {
         Card.of(FaceValue.EIGHT, Suit.DIAMONDS)
     );
 
-    boolean isOnePair = checker.checkHandValueRulesFor(cardsListWithoutAnyPair);
+    boolean isOnePair = checker.checkRulesFor(cardsListWithoutAnyPair);
 
     assertThat(isOnePair, is(false));
-  }
-
-  @Test
-  public void shouldReturnListWithTwoCardsOfTheSameFaceValueWhenAnyTwoCardsHaveTheSameFaceValue() {
-    Card AC = Card.of(FaceValue.ACE, Suit.CLUBS);
-    Card TH = Card.of(FaceValue.TEN, Suit.HEARTS);
-    Card FD = Card.of(FaceValue.FOUR, Suit.DIAMONDS);
-    Card AH = Card.of(FaceValue.ACE, Suit.HEARTS);
-    Card ED = Card.of(FaceValue.EIGHT, Suit.DIAMONDS);
-
-    List<Card> cardsListWithOnePair = List.of(AC, TH, FD, AH, ED);
-
-    List<Card> pairSubset = checker.subsetThatSatisfyRulesFor(cardsListWithOnePair);
-
-    assertThat(pairSubset, hasSize(2));
-    assertThat(pairSubset, containsInAnyOrder(AC, AH));
-  }
-
-  @Test
-  public void shouldReturnEmptyListWhenNoTwoCardsHaveTheSameFaceValue() {
-    List<Card> cardsListWithoutAnyPair = List.of(
-        Card.of(FaceValue.ACE, Suit.CLUBS),
-        Card.of(FaceValue.TEN, Suit.HEARTS),
-        Card.of(FaceValue.FOUR, Suit.DIAMONDS),
-        Card.of(FaceValue.SEVEN, Suit.HEARTS),
-        Card.of(FaceValue.EIGHT, Suit.DIAMONDS)
-    );
-
-    List<Card> pairSubset = checker.subsetThatSatisfyRulesFor(cardsListWithoutAnyPair);
-
-    assertThat(pairSubset, hasSize(0));
   }
 
 }
