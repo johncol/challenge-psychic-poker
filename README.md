@@ -1,4 +1,4 @@
-# Psychic Poker Soluction
+# Psychic Poker Solution
 
 This is my approach to solve the btccom [poker psychic challenge](https://github.com/btccom/Hire/blob/master/exercise/psychic-poker-en.md).
 
